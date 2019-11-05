@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "app chat for ftouh web developr",
       "scripts": {
-    "start": "node app.js"
+            "start": "node app.js"
   },
     "main": "app.js",
     "dependencies": {
