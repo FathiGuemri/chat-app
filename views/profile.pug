@@ -1,0 +1,30 @@
+extends ./layout/layout
+block contant
+    .container.mt-5
+        .row
+            .col.col-md-6.pt-5
+                img.w-50(src='/' + userImage, alt="image " + username, srcset="")
+            .col.col-md-6.pt-5
+                h3=userName
+                if !isOwner
+                    form(method="POST" id='formREQ')
+                        input(type="hidden", id='myId' name="myId", value=myId)
+                        input(type="hidden", id='myName' name="myName", value=myName)
+                        input(type="hidden", id='myImage' name="myImage", value=myImage)
+                        input(type="hidden", id='frinedId' name="frinedId", value=frinedId)
+                        input(type="hidden", id="userName" name="userName", value=userName)
+                        input(type="hidden", id="userImage" name="userImage", value=userImage)
+                        if isFrendes
+                            input.btn.btn-danger(type="submit", value="delete frined" formaction='/friend/delete')
+                        else if isFrendesReq
+                            input.btn.btn-danger(type="submit", value="Cancel frined" formaction='/friend/cancel')
+                        else if isFrendesSendReq
+                            input.btn.btn-success(type="submit", value="accept frined request" formaction='/friend/accept')
+                            input.btn.btn-danger(type="submit", value="reject frined request" formaction='/friend/reject')
+                        else
+                            input.btn.btn-success(type="submit", value="add frined" id='addBtn')
+block scripts
+    script(src="/socket.io/socket.io.js")
+    script(src="/js/sockets/init.js")
+    if !isOwner && !isFrendes && !isFrendesReq && !isFrendesSendReq
+        script(src="/js/sockets/friend.js")

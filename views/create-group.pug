@@ -1,0 +1,21 @@
+extends ./layout/layout
+block contant
+    .container.mt-5
+        h2.text-center.text-white.p-3 Create Group
+        form(action="/create-group", method="post" enctype="multipart/form-data"    )
+            input.form-control.mb-4(type="text" name="groupName" placeholder="Group Name")
+            .input-group-prepend.mb-4
+                span#inputGroupFileAddon01.input-group-text Upload
+                .custom-file
+                    input#inputGroupFile01.custom-file-input(type='file' name="groupImage" aria-describedby='inputGroupFileAddon01')
+                    label.custom-file-label(for='inputGroupFile01') Choose Image
+            .row
+                each friend, index in friends
+                    .col.col-md-2
+                        .custom-control.custom-checkbox
+                            input.custom-control-input(type="checkbox", id='user-' + index, name=friend.id, value=friend.id)
+                            label.custom-control-label(for='user-' + index)
+                                img.rounded-circle.user_img(src="/" + friend.image, alt="", srcset="")
+                                p.lead= friend.name
+            .text-center
+                button.btn.btn-success(type="submit") create

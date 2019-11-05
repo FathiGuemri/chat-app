@@ -1,0 +1,13 @@
+extends ./layout/layout
+block contant
+    .container.mt-5.pt-5
+        .nav.w-100.pink.p-2.text-white
+            h4.pt-1.pl-3.w-75.float-left online friends
+            .pt-1.float-right.text-right.pr-4.w-25
+                span#olne-fnds 0
+                i.fa.fa-user.ml-2.fa-1x
+        #onlineFriends
+block scripts
+    script(src="/socket.io/socket.io.js")
+    script(src="/js/sockets/init.js")
+    script(src="/js/sockets/home.js")

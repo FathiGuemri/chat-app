@@ -1,0 +1,39 @@
+nav.navbar.navbar-expand-md.navbar-dark.fixed-top
+    .container
+        a.navbar-brand(href='/') ChatApp | #{title}
+        if isConnect 
+            input(type="hidden" id='userId' value=isConnect)
+            .btn-group.ml-auto
+                -var reqIndex = friendsRequests.length;
+                input(type="hidden" id="reqIndex" value=reqIndex)
+                button.px-1.ml-1#dropdown-toggle.btn.btn-outline-pink.btn-sm.dropdown-toggle.mr-4.px-3(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                    if friendsRequests.length !== 0
+                        b= reqIndex
+                    i.fas.fa-user-clock.fa-2x
+                .dropdown-menu#friendReq
+                    if friendsRequests.length !== 0
+                        each freq in friendsRequests
+                            a.dropdown-item(href='/profile/' + freq.id)= freq.name 
+                    else
+                        span.dropdown-item no friends Requests
+        button.navbar-toggler.btn.btn-outline-pink.btn-sm.p-2(type='button', data-toggle='collapse', data-target='#basicExampleNav', aria-controls='basicExampleNav', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #basicExampleNav.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto
+                li.nav-item
+                    a.nav-link(href='/') Home
+                if isConnect
+                    li.nav-item
+                        a.nav-link(href='/Groups') Group
+                    li.nav-item
+                            a.nav-link(href='/friends') Friends
+                    li.nav-item
+                            a.nav-link(href='/profile') profile
+                if !isConnect
+                    li.nav-item
+                        a.nav-link(href='/login') Login
+                    li.nav-item
+                            a.btn.btn-outline-success.btn-sm(href='/singup' ) Singup
+                else
+                    li.nav-item
+                            a.nav-link.btn.btn-danger.btn-sm(href='/logout' ) logout

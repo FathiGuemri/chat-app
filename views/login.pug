@@ -1,0 +1,25 @@
+extends ./layout/layout
+block contant
+    .container.mt-5.pt-5
+        if loginErr.length !== 0
+            .alert.alert-danger=loginErr[0]
+        form.text-center.border.border-light.p-5.mx-auto(action='/login' method="POST" )
+            p.h4.mb-4 login
+            input#defaultRegisterFormEmail.form-control.mb-4( placeholder='E-mail' name="email")
+            -var emailErr = loginErrMsg.find(err => err.param === 'email')
+            if emailErr
+                p.text-danger= emailErr.msg
+            input#defaultRegisterFormPassword.form-control(type='password', name="password" placeholder='Password', aria-describedby='defaultRegisterFormPasswordHelpBlock')
+            -var passwordErr = loginErrMsg.find(err => err.param === 'password')
+            if passwordErr
+                p.text-danger= passwordErr.msg
+            small#defaultRegisterFormPasswordHelpBlock.form-text.text-muted.mb-4
+                | At least 8 characters and 1 digit
+            button.btn.btn-info.my-4.btn-block(type='submit') Sign up
+            hr
+            p
+                | By clicking
+                em Sign up
+                |  you agree to our 
+                a(href='/singup' ) singup
+           

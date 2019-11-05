@@ -1,0 +1,43 @@
+extends ./layout/layout
+block contant
+    .container.mt-5
+        if authErr.length !== 0
+            p.alert.alert-danger= authErr[0]
+        form.text-center.border.border-light.p-5.mx-auto(action='/singup' method="POST"  enctype="multipart/form-data")
+            p.h4.mb-4 Sign up
+            input#defaultRegisterFormFirstName.form-control.mb-2(type='text' name="username", placeholder='User name')
+            -var usernameErr = vadidationErr.find(err => err.param === 'username')
+            if usernameErr
+                p.lead.text-danger= usernameErr.msg
+            input#defaultRegisterFormEmail.form-control.mb-4( placeholder='E-mail' name="email")
+            -var emailErr = vadidationErr.find(err => err.param === 'email')
+            if emailErr
+                p.lead.text-danger= emailErr.msg
+            input#defaultRegisterFormPassword.form-control(type='password', name="password" placeholder='Password', aria-describedby='defaultRegisterFormPasswordHelpBlock')
+            small#defaultRegisterFormPasswordHelpBlock.form-text.text-muted.mb-4
+                | At least 8 characters and 1 digit
+            -var passwordErr = vadidationErr.find(err => err.param === 'password')
+            if passwordErr
+                p.lead.text-danger= passwordErr.msg
+            input#defaultRegisterPhonePassword.form-control(type='password',  name="confermPassword" placeholder="conferm Password" aria-describedby='defaultRegisterFormPhoneHelpBlock')
+            small#defaultRegisterFormPhoneHelpBlock.form-text.text-muted.mb-4
+                | conferm Password
+            -var confermPasswordErr = vadidationErr.find(err => err.param === 'confermPassword')
+            if confermPasswordErr
+                p.lead.text-danger= confermPasswordErr.msg
+            .input-group-prepend.mb-4
+                span#inputGroupFileAddon01.input-group-text Upload
+                .custom-file
+                    input#inputGroupFile01.custom-file-input(type='file' name="image" aria-describedby='inputGroupFileAddon01')
+                    label.custom-file-label(for='inputGroupFile01') Choose Image
+            -var imageErr = vadidationErr.find(err => err.param === 'image')
+            if imageErr
+                p.lead.text-danger= imageErr.msg
+            button.btn.btn-info.my-4.btn-block(type='submit') Sign up
+            hr
+            p
+                | By clicking
+                em Sign up
+                |  you agree to our 
+                a(href='/login' ) login
+           
