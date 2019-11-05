@@ -31,7 +31,7 @@
     "author": "fathi guemri",
     "license": "ISC",
     "engines": {
-        "node": "10.16.3",
+        "node": "10.x",
         "npm": "6.9.0"
     }
    
