@@ -2,7 +2,9 @@
     "name": "app-chat",
     "version": "1.0.0",
     "description": "app chat for ftouh web developr",
-    "start": "node app.js",
+      "scripts": {
+    "start": "node app.js"
+  },
     "main": "app.js",
     "dependencies": {
         "bcrypt": "^3.0.6",
