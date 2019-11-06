@@ -7,9 +7,12 @@ const express = require('express'),
     session = require('express-session'),
     SessionStoer = require('connect-mongodb-session')(session),
 
+    app = express();
 
-    app = express(),
-    server = http.createServer(app),
+app.use(express.static(path.join(__dirname, 'assets')))
+app.use(express.static(path.join(__dirname, 'images')))
+
+const server = http.createServer(app),
     io = SocketIO(server),
 
     homeRouter = require('./routers/home.router'),
@@ -34,8 +37,7 @@ global.uri = 'mongodb://uszkqwtlvpy39azkpjm8:zDX9gg20eiFmXwkNGMYY@bq90cg3au49x6h
 
 
 
-app.use(express.static(path.join(__dirname, 'assets')))
-app.use(express.static(path.join(__dirname, 'images')))
+
 app.use(flash())
 
 let STORE = new SessionStoer({
