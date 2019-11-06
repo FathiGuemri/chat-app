@@ -15,7 +15,7 @@ block contant
                                 span.online_friend_icon
                             div
                                 h4
-                                    a(href='/profile/' + friend.id)= friend .name
+                                    a(href='/profile/' + friend.id)= friend.username
                                 a.btn.btn-success.mt-3.btn-rounded.waves-effect.w-md.waves-light(href='/chat/' + friend .chatId) go to chat
 block scripts
     script(src="/socket.io/socket.io.js")

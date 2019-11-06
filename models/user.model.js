@@ -157,3 +157,14 @@ exports.getFriends = async id => {
         throw new Error(err)
     }
 }
+
+exports.getallFriends = async() => {
+    try {
+        await mongoose.connect(uri)
+        let data = await User.find()
+        return data
+    } catch (err) {
+        mongoose.disconnect()
+        throw new Error(err)
+    }
+}
