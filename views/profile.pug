@@ -23,6 +23,21 @@ block contant
                             input.btn.btn-danger(type="submit", value="reject frined request" formaction='/friend/reject')
                         else
                             input.btn.btn-success(type="submit", value="add frined" id='addBtn')
+                .list-group
+                    .text-white.w-100.p-3.pink
+                        h4  My Friends
+                    each myfriend  in myfreindes
+                        button.list-group-item(type='button')
+                            .text-center
+                                div
+                                    .ml-3.thumb-lg.member-thumb.float-left
+                                        img.rounded-circle.img-thumbnail(src='/myfriend.image' alt='profile-image')
+                                    .float-right.w-75.pt-2
+                                        h4.pt-2.float-left
+                                        a.text-dark(href='/profile' + myfriend.id)= myfriend.name
+                                        a.btn.btn-success.btn-sm.float-right.waves-effect.w-md.waves-light(href='/chat/' + myfriend.chatId) go to chat
+                                        .clearfix
+                                    .clearfix
 block scripts
     script(src="/socket.io/socket.io.js")
     script(src="/js/sockets/init.js")

@@ -7,16 +7,17 @@ block contant
             .clearfix
         .row.pt-4
             each friend in friends
-                .col.col-12.col-md-4.col-lg-3
-                    .text-center.card-box(id=friend.id)
-                        .member-card.pt-2.pb-2
-                            .thumb-lg.member-thumb.mx-auto(style='position: relative;')
-                                img.rounded-circle.img-thumbnail(src='/' + friend.image alt='profile-image')
-                                span.online_friend_icon
-                            div
-                                h4
-                                    a(href='/profile/' + friend.id)= friend.username
-                                a.btn.btn-success.mt-3.btn-rounded.waves-effect.w-md.waves-light(href='/chat/' + friend .chatId) go to chat
+                if friend._id != isConnect
+                    .col.col-12.col-md-4.col-lg-3 
+                        a(href='/profile/' + friend._id)
+                            .text-center.card-box(id=friend.id)
+                                .member-card.pt-2.pb-2
+                                    .thumb-lg.member-thumb.mx-auto(style='position: relative;')
+                                        img.rounded-circle.img-thumbnail(src='/' + friend.image alt='profile-image')
+                                        span.online_friend_icon
+                                    div
+                                        h4= friend.username
+                                        
 block scripts
     script(src="/socket.io/socket.io.js")
     script(src="/js/sockets/init.js")
