@@ -15,8 +15,8 @@ block contant
                                     .thumb-lg.member-thumb.mx-auto(style='position: relative;')
                                         img.rounded-circle.img-thumbnail(src='/' + friend.image alt='profile-image')
                                         span.online_friend_icon
-                                    div
-                                        h4= friend.username
+                                    div.mt-4
+                                        h3= friend.username
                                         
 block scripts
     script(src="/socket.io/socket.io.js")

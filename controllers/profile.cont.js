@@ -17,6 +17,7 @@ exports.getProfile = (req, res) => {
             friendsRequests: req.friendsRequests,
             userName: data.username,
             userImage: data.image,
+            userEmail: data.email,
             frinedId: data._id,
             isOwner: id === req.session.userId,
             isFrendes: data.freindes.find(frined => frined.id === req.session.userId),

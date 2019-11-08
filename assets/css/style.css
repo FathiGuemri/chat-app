@@ -15,6 +15,15 @@ nav.navbar.navbar-expand-md.navbar-dark.fixed-top {
     background: rgba(0, 0, 0, 0.3);
 }
 
+img.logo {
+    width: 48px;
+}
+
+.navbar-dark .navbar-brand {
+    color: #192e46;
+    font-weight: bold;
+}
+
 @media (max-width: 992px) {
     nav.navbar.navbar-expand-md.navbar-dark.fixed-top {
         background: rgba(156, 19, 19, 0.9);
@@ -188,6 +197,12 @@ h4 {
     position: relative;
     height: 70px;
     width: 70px;
+}
+
+#img_cont.img_cont {
+    position: relative;
+    height: 150px;
+    width: 150px;
 }
 
 .img_cont_msg {
@@ -399,4 +414,22 @@ div#chatCollapse {
     div#chatCollapse {
         display: block !important
     }
+}
+
+.call-video {
+    display: none;
+    position: fixed;
+    top: 0;
+}
+
+.videoFriend {
+    position: relative;
+}
+
+.myVideo {
+    position: absolute;
+    bottom: 30px;
+    right: 25px;
+    width: 25%;
+    height: 32%;
 }

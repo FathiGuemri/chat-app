@@ -2,10 +2,11 @@ extends ./layout/layout
 block contant
     .container.mt-5
         .row
-            .col.col-md-6.pt-5
-                img.w-50(src='/' + userImage, alt="image " + username, srcset="")
-            .col.col-md-6.pt-5
-                h3=userName
+            .col.col-12.col-md-3.pt-5
+                .img_cont#img_cont.mx-auto
+                    img.w-100.h-100.rounded-circle.user_img(src='/' + userImage, alt="image " + username, srcset="")
+                h2.pt-3.pl-3=userName
+                h5.pl-3.mb-4=userEmail
                 if !isOwner
                     form(method="POST" id='formREQ')
                         input(type="hidden", id='myId' name="myId", value=myId)
@@ -15,17 +16,32 @@ block contant
                         input(type="hidden", id="userName" name="userName", value=userName)
                         input(type="hidden", id="userImage" name="userImage", value=userImage)
                         if isFrendes
-                            input.btn.btn-danger(type="submit", value="delete frined" formaction='/friend/delete')
+                            button.btn.btn-danger.btn-sm(type="submit",  formaction='/friend/delete')
+                                i.fa.fa-trash-alt.pr-2
+                                | Delete
                         else if isFrendesReq
-                            input.btn.btn-danger(type="submit", value="Cancel frined" formaction='/friend/cancel')
+                            button.btn.btn-danger.btn-sm(type="submit",  formaction='/friend/cancel')
+                                i.fas.fa-user-slash.pr-2
+                                | Cancel
                         else if isFrendesSendReq
-                            input.btn.btn-success(type="submit", value="accept frined request" formaction='/friend/accept')
-                            input.btn.btn-danger(type="submit", value="reject frined request" formaction='/friend/reject')
+                            button.btn.btn-success.btn-sm(type="submit", formaction='/friend/accept')
+                                i.fas.fa-user-check.pr-2
+                                | Accept
+                            button.btn.btn-danger.btn-sm(type="submit",  formaction='/friend/reject')
+                                i.fa.fa-user-times.pr-2
+                                | Reject
                         else
-                            input.btn.btn-success(type="submit", value="add frined" id='addBtn')
+                            button.btn.btn-success.btn-sm(type="submit",  id='addBtn')
+                                i.fas.fa-user-plus.pr-2
+                                | Add frined
+            .col.col-12.col-md-9.pt-5
                 .list-group
-                    .text-white.w-100.p-3.pink
-                        h4  My Friends
+                    .text-white.w-100.p-1.pink
+                        h4.float-left.pt-2.px-3 My Friends #{myfreindes.length}
+                        a.btn.btn-purple.btn-sm.float-right(href="/create-group") 
+                            i.fas.fa-users.pr-2
+                            | Create Group
+                        .clearfix
                     each myfriend  in myfreindes
                         button.list-group-item(type='button')
                             .text-center
@@ -34,8 +50,10 @@ block contant
                                         img.rounded-circle.img-thumbnail(src='/myfriend.image' alt='profile-image')
                                     .float-right.w-75.pt-2
                                         h4.pt-2.float-left
-                                        a.text-dark(href='/profile' + myfriend.id)= myfriend.name
-                                        a.btn.btn-success.btn-sm.float-right.waves-effect.w-md.waves-light(href='/chat/' + myfriend.chatId) go to chat
+                                        a.text-dark(href='/profile/' + myfriend.id)= myfriend.name
+                                        a.btn.btn-success.btn-sm.float-right.waves-effect.w-md.waves-light(href='/chat/' + myfriend.chatId)
+                                            i.fas.fa-comment-medical.pr-2
+                                            | chat
                                         .clearfix
                                     .clearfix
 block scripts

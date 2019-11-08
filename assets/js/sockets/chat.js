@@ -68,14 +68,18 @@ socket.on('onlineFriends', freinds => {
 })
 
 
-let callbtn = document.getElementById('callBtn');
+let callbtn = document.getElementById('callBtn'),
+    myVideo = document.getElementById('myVideo'),
+    videoFriend = document.getElementById('videoFriend'),
+    openCall = document.getElementById('openCall'),
+    callVideo = document.getElementById('call-video');
 
 let peer = new Peer()
-let peerId = null
+let peerId;
 
 peer.on('open', id => {
-    console.log('my Id', id)
     peerId = id
+    console.log('my id ', id)
 })
 
 
@@ -89,25 +93,38 @@ socket.on('getPeerId', () => {
         chatId,
         peerId
     })
+    document.getElementById('modal').click()
 })
 
 socket.on('recievePeerId', id => {
-    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
-        let call = peer.call(id, stream)
-        call.on('stream', showVideoCall)
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(strm => {
+        let call = peer.call(id, strm)
+        call.on('stream', call.on('stream', stream => {
+            return showVideoCall(stream)
+        }))
     }).catch(err => console.log(err))
 })
+openCall.onclick = () => {
+    peer.on('call', call => {
+        navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(strm => {
+            call.answer(strm)
+            call.on('stream', stream => {
+                return showVideoCall(stream)
+            })
+        }).catch(err => console.log(err))
 
-peer.on('call', call => {
-    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
-        call.answer(stream)
-        call.on('stream', showVideoCall)
-    }).catch(err => console.log(err))
-})
+    })
+}
+
+
+
 
 function showVideoCall(stream) {
-    let video = document.createElement('video')
-    video.srcObject = stream
-    document.body.append(video)
-    video.play()
+    videoFriend.srcObject = stream
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(stream => {
+        myVideo.srcObject = stream
+    })
+    videoFriend.play()
+    myVideo.play()
+    callVideo.style.display = 'block'
 }

@@ -1,15 +1,15 @@
 extends ./layout/layout
 block contant
-    
+
     .chat-container.h-100vh.w-100vw
-        .container-fluid-h-100.mt-5
+        .container-fluid.h-100.mt-5
             .row.justify-content-center.h-100-w-100
                 .col-md-4.col-xl-3.chat
                     nav.navbar.navbar-expand-md.navbar-dark
                         .card.mb-sm-2.mb-md-0.contacts_card.w-100
                             .card-header
                                 h4.text-white.float-left.pt-2 Online Users
-                                button.float-right.navbar-toggler.btn.btn-outline-pink.btn-sm.p-2(type='button', data-toggle='collapse', data-target='#chatCollapse', aria-controls='chatCollapse', aria-expanded='false', aria-label='Toggle navigation')
+                                button.float-right.navbar-toggler.btn.btn-outline-pink.btn-sm.p-2(type='button' data-toggle='collapse' data-target='#chatCollapse' aria-controls='chatCollapse' aria-expanded='false' aria-label='Toggle navigation')
                                     span.fa.fa-user.fa-1x
                                     span#olne-fnds.pl-2 0
                             #chatCollapse.collapse.navbar-collapse
@@ -17,7 +17,8 @@ block contant
                                     #onlineFriends
                                 .card-footer
                 .col-md-8.col-xl-6.chat
-                    input(type="hidden", id="chatId" value=chatId)
+                    input(type="hidden" id="chatId" value=chatId)
+                    
                     .card
                         .card-header.msg_head
                             .d-flex.bd-highlight
@@ -38,8 +39,8 @@ block contant
                                         //- a(href='/profile/' + chatId) 
                                             i.fa.fa-user
                         .card-body.msg_card_body#msg-container
-                            input(type="hidden", id="friendImage" value=friendData.image)
-                            input(type="hidden", id="myImage" value=myImage)
+                            input(type="hidden" id="friendImage" value=friendData.image)
+                            input(type="hidden" id="myImage" value=myImage)
                             each message in messages
                                 if   String(message.sender) === isConnect
                                     .d-flex.justify-content-end.mb-4
@@ -58,10 +59,33 @@ block contant
                                 .input-group-append
                                 span.input-group-text.attach_btn
                                     i.fas.fa-paperclip
-                                textarea#message.form-control.type_msg(name='', placeholder='Type your message...')
+                                textarea#message.form-control.type_msg(name='' placeholder='Type your message...')
                                 .input-group-append
                                 button.input-group-text.send_btn#send
                                     i.fas.fa-location-arrow
+            .call-video#call-video.w-100.h-100
+                .videoFriend.w-100.h-100
+                    video.w-100.h-100(src="https://mdbootstrap.com/img/video/Lines.mp4" id="videoFriend" autoplay='autoplay'  controls)
+                    .myVideo
+                        video.w-100.h-100#myVideo(src="https://mdbootstrap.com/img/video/Lines.mp4" autoplay )
+    #modalLoginAvatar.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+        .modal-dialog.cascading-modal.modal-avatar.modal-sm(role='document')
+            .modal-content
+                .modal-header
+                    img.rounded-circle.img-responsive(src='/' + image alt='avatar')
+                .modal-body.text-center.mb-1
+                    h5.mt-1.mb-2
+                        b= name 
+                        |  wants to connect to the video
+                    .text-center.mt-4
+                        button.btn.btn-success.mt-1#openCall
+                            | open
+                            i.fas.fa-sign-in.ml-1
+
+    .text-center.d-none
+        a.btn.btn-default.btn-rounded(id="modal" href='' data-toggle='modal' data-target='#modalLoginAvatar')
+            | Launch
+            | Modal Login with Avatar    
 block scripts
     script(src="/socket.io/socket.io.js")
     script(src="https://cdn.jsdelivr.net/npm/peerjs@0.3.20/dist/peer.min.js")

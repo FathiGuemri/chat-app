@@ -1,12 +1,14 @@
 nav.navbar.navbar-expand-md.navbar-dark.fixed-top
     .container
-        a.navbar-brand(href='/') ChatApp | #{title}
+        a.navbar-brand(href='/') 
+            img.mr-2.pb-2.logo(src="/chat.png", alt="", srcset="")
+            | CleverChat
         if isConnect 
             input(type="hidden" id='userId' value=isConnect)
             .btn-group.ml-auto
                 -var reqIndex = friendsRequests.length;
                 input(type="hidden" id="reqIndex" value=reqIndex)
-                button.px-1.ml-1#dropdown-toggle.btn.btn-outline-pink.btn-sm.dropdown-toggle.mr-4.px-3(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                button.px-3.ml-1#dropdown-toggle.btn.btn-outline-pink.btn-sm.dropdown-toggle.mr-4.px-3(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
                     if friendsRequests.length !== 0
                         b= reqIndex
                     i.fas.fa-user-clock.fa-2x
