@@ -1,5 +1,7 @@
 const authModel = require('../models/auth.model'),
-    validationResult = require('express-validator').validationResult;
+    validationResult = require('express-validator').validationResult,
+    multer = require('multer'),
+    bodyParser = require('body-parser');
 let msgErr
 exports.singup = (req, res) => {
     res.render('singup',
@@ -11,24 +13,33 @@ exports.singup = (req, res) => {
         })
 
 }
-exports.postSingup = (req, res) => {
-    if (validationResult(req).isEmpty()) {
-        authModel.addUser(
-            req.body.username,
-            req.body.email,
-            req.body.password,
-            req.file.filename
-        ).then(() => {
-            res.redirect('/login')
-        }).catch(err => {
-            req.flash('authErr', err)
-            res.redirect('/singup')
-        })
 
-    } else {
-        req.flash('authMsgErr', validationResult(req).array())
-        res.redirect('/singup')
-    }
+
+exports.postSingup = (req, res) => {
+            let filename;
+            if (typeof req.file === "undefined") {
+                filename = 'defaulte-image-user.png'
+            } else {
+                filename = req.file.filename
+            }
+            if (validationResult(req).isEmpty()) {
+                authModel.addUser(
+                    req.body.username,
+                    req.body.email,
+                    req.body.password,
+                    filename
+                ).then(() => {
+                    res.redirect('/login')
+                }).catch(err => {
+                    req.flash('authErr', err)
+                    res.redirect('/singup')
+                })
+
+            } else {
+                req.flash('authMsgErr', validationResult(req).array())
+                res.redirect('/singup')
+            }
+    
 }
 exports.login = (req, res) => {
     res.render('login', {
@@ -69,3 +80,4 @@ exports.logout = (req, res) => {
     
     
 }
+

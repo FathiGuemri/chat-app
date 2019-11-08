@@ -1,7 +1,6 @@
 const router = require('express').Router(),
     authGaurd = require('./auth.gaurd'),
-    profileCont = require('../controllers/profile.cont'),
-    reqFriernds = require('../controllers/reqFriends');
+    profileCont = require('../controllers/profile.cont');
 
 router.get('/', authGaurd.isUser, profileCont.redirect);
 

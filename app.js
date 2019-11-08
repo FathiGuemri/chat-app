@@ -31,8 +31,11 @@ require('./sockets/freind.socket')(io)
 require('./sockets/init.soket')(io)
 require('./sockets/chat.socket')(io)
 
+global.uri = 'mongodb+srv://fathi:Est-367426@cluster0-9pqbz.gcp.mongodb.net/chat-app?retryWrites=true&w=majority'
 
-global.uri = 'mongodb://uszkqwtlvpy39azkpjm8:zDX9gg20eiFmXwkNGMYY@bq90cg3au49x6hv-mongodb.services.clever-cloud.com:27017/bq90cg3au49x6hv'
+
+// 'mongodb://uszkqwtlvpy39azkpjm8:zDX9gg20eiFmXwkNGMYY@bq90cg3au49x6hv-mongodb.services.clever-cloud.com:27017/bq90cg3au49x6hv'
+
 
 
 

@@ -18,7 +18,6 @@ block contant
                                 .card-footer
                 .col-md-8.col-xl-6.chat
                     input(type="hidden" id="chatId" value=chatId)
-                    
                     .card
                         .card-header.msg_head
                             .d-flex.bd-highlight
@@ -79,6 +78,7 @@ block contant
                         |  wants to connect to the video
                     .text-center.mt-4
                         button.btn.btn-success.mt-1#openCall
+                            span.spinner-grow.spinner-grow-sm( role="status" aria-hidden="true")
                             | open
                             i.fas.fa-sign-in.ml-1
 

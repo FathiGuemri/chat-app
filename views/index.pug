@@ -4,12 +4,13 @@ block contant
         .nav.w-100.pink.p-2.text-white
             h4.pt-1.pl-3.w-75.float-left
                 | online friends 
-                span#olne-fnds.pr-2 0
+                span#olne-fnds.pr-2 
+                    | 0
+                    i.fa.fa-user.mr-2.fa-1x
             a.btn.btn-purple.btn-sm.float-right(href="/create-group") 
                 i.fas.fa-users.pr-2
                 | Create Group
 
-                i.fa.fa-user.ml-2.fa-1x
         #onlineFriends
 block scripts
     script(src="/socket.io/socket.io.js")

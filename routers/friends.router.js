@@ -1,7 +1,6 @@
 const router = require('express').Router(),
     authGuard = require('./auth.gaurd'),
-    friendsCont = require('../controllers/frisnds.cont'),
-    reqFriernds = require('../controllers/reqFriends');
+    friendsCont = require('../controllers/frisnds.cont');
 
 router.get('/', friendsCont.getFriends)
 
